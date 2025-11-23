@@ -40,7 +40,7 @@ docker run \
     -v ./srtm:/tmp/srtm \
     -v ./logs:/graphhopper/logs \
     --entrypoint /bin/bash israelhikingmap/graphhopper \
-    -c "java -Xmx60g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
+    -c "java -Xmx64g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ $(grep -c "flushed graph total" logs/graphhopper.log) -eq 0 ]; then
     echo "Import failed!"
