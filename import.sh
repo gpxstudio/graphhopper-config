@@ -12,10 +12,25 @@ mkdir -p logs
 
 cp config.yml data/config.yml
 
-rm -f data/data.osm.pbf
-curl -L $pbf_file -o data/data.osm.pbf
+if [ -f data/data.osm.pbf ]; then
+    mod_time=$(stat -f "%m" data/data.osm.pbf)
+    current_time=$(date +%s)
+    age=$((current_time - mod_time))
+    # if file is older than 7 days (604800 seconds), re-download
+    if [ $age -lt 604800 ]; then
+        echo "Using existing data.osm.pbf file."
+    else
+        echo "Existing data.osm.pbf file is old. Re-downloading."
+        rm -f data/data.osm.pbf
+        curl -L $pbf_file -o data/data.osm.pbf
+    fi
+else
+    echo "data.osm.pbf file does not exist. Downloading."
+    curl -L $pbf_file -o data/data.osm.pbf
+fi
 
 if [ ! -f data/data.osm.pbf ]; then
+    echo "data.osm.pbf download failed!"
     exit 1
 fi
 
@@ -28,6 +43,7 @@ docker run \
     -c "java -Xmx60g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ $(grep -c "flushed graph total" logs/graphhopper.log) -eq 0 ]; then
+    echo "Import failed!"
     exit 1
 fi
 
