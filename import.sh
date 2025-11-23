@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pbf_file=http://download.geofabrik.de/europe/germany/berlin-latest.osm.pbf
+pbf_file=https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
 
 rm -rf graph-cache-new
 rm -rf logs
