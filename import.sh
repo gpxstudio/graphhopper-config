@@ -13,7 +13,7 @@ mkdir -p logs
 cp config.yml data/config.yml
 
 if [ -f data/data.osm.pbf ]; then
-    mod_time=$(stat -f "%m" data/data.osm.pbf)
+    mod_time=$(stat -c "%Y" data/data.osm.pbf)
     current_time=$(date +%s)
     age=$((current_time - mod_time))
     # if file is older than 7 days (604800 seconds), re-download
