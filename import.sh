@@ -40,7 +40,7 @@ docker run \
     -v ./srtm:/tmp/srtm \
     -v ./logs:/graphhopper/logs \
     --entrypoint /bin/bash israelhikingmap/graphhopper \
-    -c "java -Xms60g -Xmx60g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
+    -c "java -Xms40g -Xmx40g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ ! -f logs/graphhopper.log ]; then
     echo "Failed to launch import!"
