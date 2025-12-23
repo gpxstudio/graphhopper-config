@@ -23,6 +23,10 @@ if [ -f data/data.osm.pbf ]; then
             if [ $last_import_time -gt $mod_time ]; then
                 echo "Data has already been processed."
                 exit 0
+            else
+                echo "Data has not been processed yet. Proceeding with import."
+                echo $mod_time
+                echo $last_import_time
             fi
         fi
     else
