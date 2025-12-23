@@ -18,15 +18,11 @@ if [ -f data/data.osm.pbf ]; then
     age=$((current_time - mod_time))
     if [ $age -lt 604800 ]; then
         echo "Using existing data.osm.pbf file."
-        if [ -f logs/graphhopper.log ]; then
-            last_import_time=$(stat -c "%Y" logs/graphhopper.log)
+        if [ -f graph-cache/properties.txt ]; then
+            last_import_time=$(grep "datareader.import.date" graph-cache/properties.txt | cut -d'=' -f2 | xargs -I{} date -d {} +%s)
             if [ $last_import_time -gt $mod_time ]; then
                 echo "Data has already been processed."
                 exit 0
-            else
-                echo "Data has not been processed yet. Proceeding with import."
-                echo $mod_time
-                echo $last_import_time
             fi
         fi
     else
