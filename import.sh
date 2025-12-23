@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pbf_file=https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
+pbf_file=https://download.geofabrik.de/europe/belgium-latest.osm.pbf
 
 rm -rf graph-cache-new
 rm -rf logs
@@ -16,9 +16,15 @@ if [ -f data/data.osm.pbf ]; then
     mod_time=$(stat -c "%Y" data/data.osm.pbf)
     current_time=$(date +%s)
     age=$((current_time - mod_time))
-    # if file is older than 7 days (604800 seconds), re-download
     if [ $age -lt 604800 ]; then
         echo "Using existing data.osm.pbf file."
+        if [ -f logs/graphhopper.log ]; then
+            last_import_time=$(stat -c "%Y" logs/graphhopper.log)
+            if [ $last_import_time -gt $mod_time ]; then
+                echo "Data has already been processed."
+                exit 0
+            fi
+        fi
     else
         echo "Existing data.osm.pbf file is old. Re-downloading."
         rm -f data/data.osm.pbf
@@ -43,11 +49,11 @@ docker run \
     -c "java -Xms40g -Xmx40g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ ! -f logs/graphhopper.log ]; then
-    echo "Failed to launch import!"
+    echo "Failed to launch processing!"
     exit 1
 fi
 if [ $(grep -c "flushed graph total" logs/graphhopper.log) -eq 0 ]; then
-    echo "Import failed!"
+    echo "Processing failed!"
     exit 1
 fi
 
