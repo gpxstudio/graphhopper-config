@@ -111,14 +111,14 @@ graphhopper:
   # Private roads are blocked by default to disable this you can specify (also applies to other access encoded values like bike_access):
   #   car_access|block_private=false
   graph.encoded_values: >
-    road_access|block_private=false, track_type, road_class, curvature, surface, average_slope, roundabout, country,
-    car_access|block_private=false, car_average_speed,
+    road_access, track_type, road_class, curvature, surface, average_slope, roundabout, country,
+    car_access, car_average_speed,
     foot_network,
-    foot_access|block_private=false, foot_priority, foot_average_speed, foot_road_access|block_private=false, hike_rating,
+    foot_access, foot_priority, foot_average_speed, foot_road_access, hike_rating,
     bike_network,
-    bike_priority, bike_access|block_private=false, bike_average_speed, bike_road_access|block_private=false,
-    mtb_priority, mtb_access|block_private=false, mtb_average_speed, mtb_rating,
-    racingbike_priority, racingbike_access|block_private=false, racingbike_average_speed,
+    bike_priority, bike_access, bike_average_speed, bike_road_access,
+    mtb_priority, mtb_access, mtb_average_speed, mtb_rating,
+    racingbike_priority, racingbike_access, racingbike_average_speed,
 
   #### Speed, hybrid and flexible mode ####
 
