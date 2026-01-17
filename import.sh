@@ -45,7 +45,7 @@ docker run \
     -v ./graph-cache-new:/graphhopper/graph-cache \
     -v ./srtm:/tmp/srtm \
     -v ./logs:/graphhopper/logs \
-    --entrypoint /bin/bash israelhikingmap/graphhopper \
+    graphhopper \
     -c "java -Xms40g -Xmx40g -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ ! -f logs/graphhopper.log ]; then

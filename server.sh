@@ -11,5 +11,5 @@ docker run \
     -v ./logs:/graphhopper/logs \
     -p 8989:8989 \
     -p 8990:8990 \
-    --entrypoint /bin/bash israelhikingmap/graphhopper \
+    graphhopper \
     -c "java -Xmx60g -XX:+UseZGC -jar *.jar server /data/config.yml"
