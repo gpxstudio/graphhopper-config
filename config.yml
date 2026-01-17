@@ -49,6 +49,9 @@ graphhopper:
 
    - name: mtb
      custom_model_files: [mtb.json, bike_elevation.json]
+
+   - name: gravelbike
+     custom_model_files: [mtb.json, bike_elevation.json, gravelbike.json]
     
    - name: motorcycle
      custom_model_files: [motorcycle.json, curvature.json]
@@ -77,7 +80,7 @@ graphhopper:
 #   See ./core/src/main/resources/com/graphhopper/custom_models and let us know if you customize them, improve them or create new onces!
 #   Also there is the curvature.json custom model which might be useful for a motorcyle profile or the opposite for a truck profile.
 #   Then specify a folder where to find your own custom model files:
-#  custom_models.directory: custom_models
+ custom_models.directory: /data/
 
 
   # Speed mode:
