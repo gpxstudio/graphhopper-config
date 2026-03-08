@@ -5,7 +5,10 @@ if [ -n "$ids" ]; then
   docker stop $ids
   docker rm $ids
 fi
+
 docker system prune -f
 
-./import.sh
-./server.sh
+cwd=$(pwd)
+
+"$cwd/import.sh"
+"$cwd/server.sh"
