@@ -8,9 +8,7 @@ fi
 
 docker system prune -f
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-cd $script_dir
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 ./import.sh
 ./server.sh
