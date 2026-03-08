@@ -1,7 +1,10 @@
 #!/bin/bash
 
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+ids=$(docker ps -a -q)
+if [ -n "$ids" ]; then
+  docker stop $ids
+  docker rm $ids
+fi
 docker system prune -f
 
 ./import.sh
