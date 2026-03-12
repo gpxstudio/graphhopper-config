@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t --no-cache graphhopper .
+docker build --no-cache -t graphhopper .
