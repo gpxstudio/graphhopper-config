@@ -50,10 +50,12 @@ docker run \
     -c "java -Xms35g -Xmx35g -XX:+UseParallelGC -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ ! -f logs/graphhopper.log ]; then
+    rm -rf graph-cache-new
     echo "Failed to launch processing!"
     exit 1
 fi
 if [ $(grep -c "flushed graph total" logs/graphhopper.log) -eq 0 ]; then
+    rm -rf graph-cache-new
     echo "Processing failed!"
     exit 1
 fi
