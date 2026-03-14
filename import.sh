@@ -47,7 +47,7 @@ docker run \
     -v ./srtm:/tmp/srtm \
     -v ./logs:/graphhopper/logs \
     graphhopper \
-    -c "java -Xms30g -Xmx50g -XX:+UseParallelGC -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
+    -c "java -Xms60g -Xmx90g -XX:+UseParallelGC -Ddw.graphhopper.datareader.file=/data/data.osm.pbf -jar *.jar import /data/config.yml"
 
 if [ ! -f logs/graphhopper.log ]; then
     rm -rf graph-cache-new
