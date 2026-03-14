@@ -1,6 +1,5 @@
-*
-!.gitignore
-!*.sh
-!*.yml
-!*.json
-!Dockerfile
+.DS_Store
+data/
+srtm/
+graph-cache/
+logs/
