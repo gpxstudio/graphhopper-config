@@ -140,7 +140,10 @@ graphhopper:
   #### Elevation ####
 
   # To populate your graph with elevation data use SRTM, default is noop (no elevation). Read more about it in docs/core/elevation.md
-  graph.elevation.provider: srtm
+  graph.elevation.provider: pmtiles
+  graph.elevation.pmtiles.location: /data/pmtiles.pmtiles
+  graph.elevation.pmtiles.zoom: 12
+  graph.elevation.cache_dir: /tmp/pmtiles-cache
 
   # default location for cache is /tmp/srtm
   # graph.elevation.cache_dir: ./srtmprovider/
