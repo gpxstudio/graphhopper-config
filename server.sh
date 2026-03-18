@@ -1,14 +1,13 @@
 #!/bin/bash
 
-mkdir -p data
 mkdir -p logs
 
-cp config.yml data/config.yml
+cp config.yml /data/config.yml
 
-sed -i 's/RAM_STORE/MMAP/g' data/config.yml
+sed -i 's/RAM_STORE/MMAP/g' /data/config.yml
 
 docker run \
-    -v ./data:/data:ro \
+    -v /data:/data:ro \
     -v ./graph-cache:/graphhopper/graph-cache \
     -v ./logs:/graphhopper/logs \
     -p 8989:8989 \
