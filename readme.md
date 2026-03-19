@@ -11,8 +11,15 @@ Some general information is also available here:
 
 https://www.graphhopper.com/blog/2022/06/27/host-your-own-worldwide-route-calculator-with-graphhopper/
 
-### Docker image
+### Docker
 
+Install Docker on the server by following the instructions here: https://docs.docker.com/engine/install/ubuntu/.
+Then, add user to the docker group:
+```
+sudo usermod -a -G docker $USER
+```
+and log out and log in.
+Finally, build the Docker image by running the build script.
 ```
 ./build.sh
 ```
@@ -25,14 +32,20 @@ crontab -e
 ```
 and add a line to schedule the cron.sh script
 ```
-40 16 7 * * /home/user/graphhopper-config/cron.sh > /home/user/graphhopper-config/cron_logs
+20 0 1,14 * * /home/user/graphhopper-config/cron.sh > /home/user/graphhopper-config/cron_logs
 ```
 
-### NGINX reverse proxy
+### NGINX
 
+Install Nginx:
 ```
-cp graphhopper.conf /etc/nginx/sites-enabled/
-nginx -s reload
+sudo apt install nginx
+```
+Then, replace the default configuration and reload the service.
+```
+sudo rm /etc/nginx/sites-enabled/default
+sudo cp graphhopper.conf /etc/nginx/sites-enabled/
+sudo nginx -s reload
 ```
 
 ### Infrastructure
