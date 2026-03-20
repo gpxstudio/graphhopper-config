@@ -7,6 +7,7 @@ rm -rf logs
 
 mkdir -p graph-cache-new
 mkdir -p srtm
+mkdir -p cgiar
 mkdir -p gmted
 mkdir -p logs
 
@@ -45,6 +46,7 @@ docker run \
     -v /data:/data:ro \
     -v ./graph-cache-new:/graphhopper/graph-cache \
     -v ./srtm:/tmp/srtm \
+    -v ./cgiar:/tmp/cgiar \
     -v ./gmted:/tmp/gmted \
     -v ./logs:/graphhopper/logs \
     graphhopper \
