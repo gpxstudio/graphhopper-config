@@ -1,9 +1,9 @@
-FROM eclipse-temurin:17-jdk AS build
+FROM maven:3.9-eclipse-temurin-25 AS build
 
 ENV GH_HOME=/build/graphhopper
 
 RUN apt-get update && \
-    apt-get install -y git maven && \
+    apt-get install -y git && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
